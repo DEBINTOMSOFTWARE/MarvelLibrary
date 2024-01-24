@@ -6,6 +6,7 @@ import LibraryScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
@@ -20,6 +21,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.marvellibrary.ui.theme.MarvelLibraryTheme
+import com.example.marvellibrary.viewmodel.MarvelApiViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 sealed class Destination(val route: String) {
     data object Library : Destination("library")
@@ -29,7 +32,10 @@ sealed class Destination(val route: String) {
     }
 }
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<MarvelApiViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -59,7 +65,11 @@ class MainActivity : ComponentActivity() {
                 startDestination = Destination.Library.route
             ) {
                 composable(Destination.Library.route) {
-                    LibraryScreen()
+                    LibraryScreen(
+                        navController = navController,
+                        viewModel = viewModel,
+                        paddingValues = paddingValues
+                    )
                 }
                 composable(Destination.Collection.route) {
                     CollectionScreen()

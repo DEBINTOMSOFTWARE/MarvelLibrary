@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object ApiService {
-    private const val BASE_URL = "http://gateway.marvel.com/v1/public"
+    private const val BASE_URL = "http://gateway.marvel.com/v1/public/"
 
     private fun getRetrofit(): Retrofit {
         val ts = System.currentTimeMillis().toString()
