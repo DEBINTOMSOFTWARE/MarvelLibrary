@@ -6,8 +6,8 @@ import com.example.marvellibrary.model.api.ApiService
 import com.example.marvellibrary.model.api.MarvelApiRepo
 import com.example.marvellibrary.model.db.CharacterDao
 import com.example.marvellibrary.model.db.ComicsDb
-import com.example.marvellibrary.model.db.ComicsDbRepo
-import com.example.marvellibrary.model.db.ComicsDbRepoImpl
+import com.example.marvellibrary.model.db.CollectionDbRepo
+import com.example.marvellibrary.model.db.CollectionDbRepoImpl
 import com.example.marvellibrary.model.db.Constants.DB
 import dagger.Module
 import dagger.Provides
@@ -29,5 +29,5 @@ class HiltModule {
     fun provideCharacterDao(comicsDb: ComicsDb) = comicsDb.characterDao()
 
     @Provides
-    fun provideDbRepoImpl(characterDao: CharacterDao): ComicsDbRepo = ComicsDbRepoImpl(characterDao)
+    fun provideDbRepoImpl(characterDao: CharacterDao): CollectionDbRepo = CollectionDbRepoImpl(characterDao)
 }

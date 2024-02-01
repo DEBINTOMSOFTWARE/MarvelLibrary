@@ -2,7 +2,7 @@ package com.example.marvellibrary.model.db
 
 import kotlinx.coroutines.flow.Flow
 
-class ComicsDbRepoImpl(private val characterDao: CharacterDao) : ComicsDbRepo {
+class CollectionDbRepoImpl(private val characterDao: CharacterDao) : CollectionDbRepo {
     override suspend fun getCharactersFromRepo(): Flow<List<DbCharacter>> =
         characterDao.getCharacters()
 

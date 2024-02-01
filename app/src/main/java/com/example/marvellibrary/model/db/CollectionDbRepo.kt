@@ -2,7 +2,7 @@ package com.example.marvellibrary.model.db
 
 import kotlinx.coroutines.flow.Flow
 
-interface ComicsDbRepo {
+interface CollectionDbRepo {
     suspend fun getCharactersFromRepo(): Flow<List<DbCharacter>>
     suspend fun getCharacterFromRepo(characterId: Int): Flow<DbCharacter>
     suspend fun addCharacterToRepo(character: DbCharacter)

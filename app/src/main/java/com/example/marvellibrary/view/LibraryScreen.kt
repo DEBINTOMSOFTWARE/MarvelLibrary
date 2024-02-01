@@ -126,7 +126,7 @@ fun ShowCharacterList(
                                 navController.navigate(Destination.CharacterDetail.createRoute(id))
                             else
                                 Toast
-                                    .makeText(context, "Character id id nll", Toast.LENGTH_SHORT)
+                                    .makeText(context, "Character id id null", Toast.LENGTH_SHORT)
                                     .show()
                         }
                 ) {
