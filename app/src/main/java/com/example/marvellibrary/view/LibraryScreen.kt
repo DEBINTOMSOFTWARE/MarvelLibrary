@@ -34,6 +34,8 @@ import com.example.marvellibrary.AttributionText
 import com.example.marvellibrary.CharacterImage
 import com.example.marvellibrary.Destination
 import com.example.marvellibrary.model.CharactersApiResponse
+import com.example.marvellibrary.model.connectivity.ConnectivityMonitor
+import com.example.marvellibrary.model.connectivity.ConnectivityObservable
 import com.example.marvellibrary.viewmodel.MarvelApiViewModel
 
 @Composable
@@ -44,6 +46,8 @@ fun LibraryScreen(
 ) {
     val result by viewModel.result.collectAsState()
     val text = viewModel.queryText.collectAsState()
+    val networkAvailable =
+        viewModel.networkAvailable.observe().collectAsState(ConnectivityObservable.Status.Available)
 
     Column(
         modifier = Modifier
@@ -51,6 +55,23 @@ fun LibraryScreen(
             .padding(bottom = paddingValues.calculateBottomPadding()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        if (networkAvailable.value == ConnectivityObservable.Status.Unavailable) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Red),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Network unavailable",
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+
         OutlinedTextField(
             value = text.value,
             onValueChange = viewModel::onQueryUpdate,

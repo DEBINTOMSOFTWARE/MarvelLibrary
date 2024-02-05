@@ -3,6 +3,7 @@ package com.example.marvellibrary.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marvellibrary.model.api.MarvelApiRepo
+import com.example.marvellibrary.model.connectivity.ConnectivityMonitor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -16,12 +17,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MarvelApiViewModel @Inject constructor(
-    private val repo: MarvelApiRepo
+    private val repo: MarvelApiRepo,
+    connectivityMonitor: ConnectivityMonitor
 ) : ViewModel() {
     val result = repo.characters
     val queryText = MutableStateFlow("")
     private val queryInput = Channel<String>(Channel.CONFLATED)
     val characterDetails = repo.characterDetails
+    val networkAvailable = connectivityMonitor
 
     init {
         retrieveCharacters()
