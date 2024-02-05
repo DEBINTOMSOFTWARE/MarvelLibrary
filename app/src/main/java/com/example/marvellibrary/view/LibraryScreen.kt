@@ -34,7 +34,6 @@ import com.example.marvellibrary.AttributionText
 import com.example.marvellibrary.CharacterImage
 import com.example.marvellibrary.Destination
 import com.example.marvellibrary.model.CharactersApiResponse
-import com.example.marvellibrary.model.connectivity.ConnectivityMonitor
 import com.example.marvellibrary.model.connectivity.ConnectivityObservable
 import com.example.marvellibrary.viewmodel.MarvelApiViewModel
 
